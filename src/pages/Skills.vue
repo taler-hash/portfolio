@@ -1,6 +1,6 @@
 <template>
   <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky top-0">Skills</div>
-  <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48 transition-all">
+  <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48 transition-all pb-24">
     <div class="max-h-[94%] lg:w-[800px] w-96 py-4  px-4 ">
       <div class="h-[94%] w-full flex flex-wrap h-fit justify-center gap-4 transition-all">
         <template v-for="skill in skills">
@@ -16,9 +16,9 @@
           </div>
         </template>
       </div>
-
+      <div class="pt-12"></div>
     </div>
-    <div class="h-[6%] w-full flex justify-center items-center space-x-2">
+    <div class="h-[6%] w-full flex justify-center items-center space-x-2 fixed bottom-[6.5rem] bg-white">
       <select @change="handleFilter()" v-model="selected" name="" id="" class="px-1 py-1 rounded-md border ">
         <option value="" selected>All</option>
         <option v-for="language of filterLanguage()" :value="language"> {{ language }}</option>
