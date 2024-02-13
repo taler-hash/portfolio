@@ -2,7 +2,7 @@
   <div class="grid place-items-center text-white h-full">
     <div class="p-2 bg-white/25 rounded-2xl flex items-center backdrop-blur-lg space-x-2">
       <div v-for="link in links" :key="link" class="flex flex-col items-center gap-y-1">
-        <router-link :to="link.redirect"  active-class="bg-white text-gray-800 border-gray-800 border-[3px]" class="text-white p-4 rounded-xl w-fit bg-gray-800 transition-all">
+        <router-link :to="link.redirect"  active-class="bg-white text-gray-700 border-gray-800 border-[3px]" class="text-white p-4 rounded-xl w-fit bg-gray-800 transition-all">
           <div v-html="link.icon"></div>
         </router-link>
         <p class="font-medium text-xs md:text-sm text-black transition-all">{{ link.title }}</p>

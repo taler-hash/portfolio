@@ -2,7 +2,7 @@
   <div class="h-[6%] font-bold px-4 py-2 text-2xl">Projects</div>
   <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48">
     <div
-      class="max-h-[94%] lg:w-[800px] w-96 py-4  px-4 hover:overflow-auto overflow-hidden flex flex-wrap gap-3 relative">
+      class="max-h-[94%] lg:w-[800px] w-96 py-4  px-4 flex flex-wrap gap-3 relative">
       <button v-for="(project, key) in projects" 
         :ref="`${key.replace(/\s/g, '').toLowerCase()}`"
         class="p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col h-fit cursor-pointer group text-start relative focus:shadow-gray-600"
