@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky top-0">Education</div>
+  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky top-0 -top-[1px] backdrop-blur-lg antialised z-50">Education</div>
   <div class="h-[82%] w-full flex justify-center">
     <div class="w-[500px] py-4 space-y-4 text-wrap px-4">
       <div v-for="education in educations" class="p-3 px-5 rounded-lg border shadow-md">

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl fixed top-0 sticky top-0">Projects</div>
+  <div class="h-[6%] font-bold px-4 py-2 text-2xl fixed top-0 sticky top-0 -top-[1px] backdrop-blur-lg antialised z-50">Projects</div>
   <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48">
     <div
       class="max-h-[94%] lg:w-[800px] w-96 py-4  px-4 flex flex-wrap gap-3 relative">
