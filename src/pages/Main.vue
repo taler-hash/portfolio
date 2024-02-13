@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[88%] w-full flex flex-col lg:flex-row lg:px-48">
+  <div class="h-full w-full flex flex-col lg:flex-row lg:px-48">
     <div class="w-full flex-1 lg:order-last">
       <div class="flex items-center h-full justify-center ">
         <div class="relative w-96 h-96 rounded-full overflow-hidden border bg-gradient-to-br from-neutral-50 via-slate-200 to-slate-400 shadow-sm">
@@ -43,7 +43,6 @@
         </p>
       </div>
     </div>
-    
   </div>
 </template>
 <script>

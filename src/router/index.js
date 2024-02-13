@@ -11,11 +11,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: "/:notFound",
+      component: notFound,
+    },
+    {
       path: '/',
       name: 'home',
       redirect: to => { return {name : 'About Me'}},
       children: [
-        { path: '/:pathMatch(.*)*', component: notFound },
         {
           path: '/me',
           name: 'About Me',

@@ -1,9 +1,11 @@
 <template>
   <div class="grid place-items-center text-white h-full">
-    <div class="p-2 bg-white/25 rounded-2xl flex items-center backdrop-blur-lg space-x-2">
+    <div class="p-2 bg-white/25 rounded-2xl flex items-center backdrop-blur-lg space-x-2 border">
       <div v-for="link in links" :key="link" class="flex flex-col items-center gap-y-1">
-        <router-link :to="link.redirect"  active-class="bg-white text-gray-700 border-gray-800 border-[3px]" class="text-white p-4 rounded-xl w-fit bg-gray-800 transition-all">
-          <div v-html="link.icon"></div>
+        <router-link :to="link.redirect" v-slot="{href, route, navigate, isActive}">
+          <button :class="[isActive ? 'text-black bg-white border border-gray-800' : 'text-white bg-gray-800']" class="p-4 rounded-xl w-fit  transition-all">
+            <a :href="href" @click="navigate" v-html="link.icon"></a>
+          </button>
         </router-link>
         <p class="font-medium text-xs md:text-sm text-black transition-all">{{ link.title }}</p>
       </div>

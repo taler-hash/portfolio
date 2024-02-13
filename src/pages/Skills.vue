@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl">Skills</div>
+  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky top-0">Skills</div>
   <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48 transition-all">
     <div class="max-h-[94%] lg:w-[800px] w-96 py-4  px-4 ">
       <div class="h-[94%] w-full flex flex-wrap h-fit justify-center gap-4 transition-all">

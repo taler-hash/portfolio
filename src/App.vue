@@ -3,11 +3,13 @@
     <div class="">
       {{ path }}
     </div>
-    <div class="w-full h-full ">
-      <router-view></router-view>
+    <div class="w-full h-full pb-[8rem]">
+      <div class="w-full h-full overflow-y-auto">
+        <router-view></router-view>
+      </div>
     </div>
     <!-- Footer -->
-    <div class="w-full h-[11%] fixed bottom-0">
+    <div class="w-full h-[13%] fixed bottom-0">
       <Footer/>
     </div>
   </main>
