@@ -5,6 +5,7 @@ import Experience from '../pages/Experience.vue'
 import Education from '../pages/Education.vue'
 import Projects from '../pages/Projects.vue'
 import Attainments from '../pages/Attainments.vue'
+import notFound from '../pages/notFound.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,7 @@ const router = createRouter({
       name: 'home',
       redirect: to => { return {name : 'About Me'}},
       children: [
+        { path: '/:pathMatch(.*)*', component: notFound },
         {
           path: '/me',
           name: 'About Me',
@@ -45,7 +47,7 @@ const router = createRouter({
           component: Attainments
         },
       ]
-    }
+    },
   ]
 })
 
