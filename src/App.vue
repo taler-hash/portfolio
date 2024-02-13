@@ -22,8 +22,6 @@ export default {
     Footer: Footer
   },
 
-  
-
   mounted() {
     const route = useRoute()
 

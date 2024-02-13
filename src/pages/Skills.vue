@@ -1,8 +1,8 @@
 <template>
   <div class="h-[6%] font-bold px-4 py-2 text-2xl">Skills</div>
-  <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48">
+  <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48 transition-all">
     <div class="max-h-[94%] lg:w-[800px] w-96 py-4  px-4 hover:overflow-auto overflow-hidden ">
-      <div class="h-[94%] w-full flex flex-wrap h-fit justify-center gap-4">
+      <div class="h-[94%] w-full flex flex-wrap h-fit justify-center gap-4 transition-all">
         <template v-for="skill in skills">
           <div v-if="skill.show" class="p-3 px-5 rounded-lg border shadow-md w-fit h-fit">
             <div class="font-medium text-center">
@@ -67,6 +67,18 @@ export default {
         },
         {
           show: true,
+          name: 'Typescript',
+          rate: 5,
+          language: 'Javascript'
+        },
+        {
+          show: true,
+          name: 'React.JS',
+          rate: 7,
+          language: 'Javascript'
+        },
+        {
+          show: true,
           name: 'Node.JS',
           rate: 7.5,
           language: 'Javascript'
@@ -92,7 +104,7 @@ export default {
         {
           show: true,
           name: 'CSS',
-          rate: 5,
+          rate: 6.5,
           language: 'CSS'
         },
         {
@@ -149,6 +161,7 @@ export default {
           rate: 6.5,
           language: 'Linux'
         },
+        
       ]
     }
   },

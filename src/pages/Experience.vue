@@ -12,18 +12,21 @@
         </div>
         <div class="pb-1.5">
           <p class="font-bold text-xl">{{ exp.company }}</p>
-          <div class="text-sm font-medium">
+          <div class="text-sm font-medium text-gray-600">
             {{ exp.years }}
           </div>
         </div>
         <div class="pb-3">
           <p class="font-bold">Been Handling:</p>
-          <ul  class="list-disc list-inside font-medium">
-            <li v-for="handling in exp.handlings"> {{ handling }}</li>
+          <ul class="list-disc list-inside font-medium">
+            <li v-for="handling in exp.handlings"><router-link
+                :to="handling.show ? { path: '/projects', query: { project: handling.name } } : {}">
+                {{ handling.name }}</router-link> </li>
           </ul>
         </div>
         <div class=" font-medium flex gap-2 w-full flex-wrap">
-          <div v-for="skill in exp.skillsets" class="p-1 px-2 bg-gray-800 text-white w-fit rounded-lg text-nowrap">{{ skill }}</div>
+          <div v-for="skill in exp.skillsets" class="p-1 px-2 bg-gray-800 text-white w-fit rounded-lg text-nowrap">{{
+            skill }}</div>
         </div>
       </div>
     </div>
@@ -38,10 +41,16 @@ export default {
         {
           company: 'Cubic Solutions Inc',
           handlings: [
-            'SportsBook API',
-            'Web Scraper',
+            {
+              name: 'SportsBook API',
+              show: true,
+            },
+            {
+              name: 'Web Scraper',
+              show: true,
+            },
           ],
-          years: '3 months',
+          years: 'Oct 2023 - Jan 2024 | 3 months | Fulltime',
           skillsets: [
             'Vue.JS',
             'Redis',
@@ -60,13 +69,28 @@ export default {
         {
           company: 'Metro Retail Store Group Inc',
           handlings: [
-            'RMS User Access Control ( Design and Developed )',
-            'Resa Session ( Design and Developed )',
-            'EDI ( Level 3 Support )',
-            'CMS ( Maintain and Co-developed )',
-            'E Raffle Ticket ( Maintain )'
+            {
+              name: 'RMS User Access Control',
+              show: true,
+            },
+            {
+              name: 'Resa Session',
+              show: true,
+            },
+            {
+              name: 'Electronic Data Interchange',
+              show: true,
+            },
+            {
+              name: 'Contract Management System',
+              show: true,
+            },
+            {
+              name: 'E Raffle Ticket',
+              show: true,
+            },
           ],
-          years: '1 year and 2 months',
+          years: 'Aug 2022 – Sept 2023 | 1 year and 2 months | Fulltime',
           skillsets: [
             'Mysql',
             'Jquery',
@@ -84,6 +108,16 @@ export default {
             'Oracle Linux',
             'Ubuntu',
 
+          ]
+        },
+        {
+          company: 'Cold Link Asia Logistic',
+          years: 'Sep 2019 - Dec 2019 | 3 months | Intern',
+          handlings: [
+            {
+              name: 'Computer Repair',
+              show: false,
+            },
           ]
         }
       ]
