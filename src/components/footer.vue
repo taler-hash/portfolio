@@ -9,7 +9,7 @@
           </button>
         </router-link>
         <div class=" h-full">
-          <p class="font-medium  text-black transition-all truncate w-fit"
+          <p class="font-medium  text-black transition-all truncate w-fit text-xs md:text-sm"
             :class="[link.title.length >= 9 ? 'md:text-xs text-[12px]' : 'md:text-sm text-']">{{ link.title }}</p>
         </div>
       </div>
