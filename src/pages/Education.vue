@@ -1,8 +1,10 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky top-0 -top-[1px] backdrop-blur-lg antialised z-50">Education</div>
+  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky top-0 -top-[1px] backdrop-blur-lg antialised z-50">Education
+  </div>
   <div class="h-[82%] w-full flex justify-center">
-    <div class="w-[500px] py-4 space-y-4 text-wrap px-4">
-      <div v-for="education in educations" class="p-3 px-5 rounded-lg border shadow-md">
+    <TransitionGroup class="w-[500px] py-4 space-y-4 text-wrap px-4" :css="false" @before-enter="onBeforeEnter"
+      @enter="onEnter" @leave="onLeave" tag="div" appear>
+      <div v-for="education in educations" :key="education" class="p-3 px-5 rounded-lg border shadow-md">
         <div class="pb-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-6 h-6">
@@ -19,10 +21,12 @@
           <div class="font-medium text-lg">{{ education.degree }}</div>
         </div>
       </div>
-    </div>
+    </TransitionGroup>
   </div>
 </template>
 <script>
+import gsap from 'gsap'
+
 export default {
   data() {
     return {
@@ -54,6 +58,28 @@ export default {
           degree: '',
         },
       ]
+    }
+  },
+  methods: {
+    onBeforeEnter(el) {
+      el.style.opacity = 0
+      el.style.height = 0
+    },
+    onEnter(el, done) {
+      gsap.to(el, {
+        opacity: 1,
+        height: 'auto',
+        delay: el.dataset.index * 0.15,
+        onComplete: done
+      })
+    },
+    onLeave(el, done) {
+      gsap.to(el, {
+        opacity: 0,
+        height: 0,
+        delay: el.dataset.index * 0.15,
+        onComplete: done
+      })
     }
   }
 }

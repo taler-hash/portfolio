@@ -1,10 +1,10 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl fixed top-0 sticky top-0 -top-[1px] backdrop-blur-lg antialised z-50">Projects</div>
+  <div class="h-[6%] font-bold px-4 py-2 text-2xl fixed top-0 sticky top-0 -top-[1px] backdrop-blur-lg antialised z-50">
+    Projects</div>
   <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48">
-    <div
-      class="max-h-[94%] lg:w-[800px] w-full py-4  px-4 flex flex-wrap gap-3 relative">
-      <button v-for="(project, key) in projects" 
-        :ref="`${key.replace(/\s/g, '').toLowerCase()}`"
+    <TransitionGroup class="max-h-[94%] lg:w-[800px] w-full py-4  px-4 flex flex-wrap justify-center gap-3 relative"
+      :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" tag="div" appear>
+      <button v-for="(project, key) in projects" :key="project" :ref="`${key.replace(/\s/g, '').toLowerCase()}`"
         class="p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col h-fit cursor-pointer group text-start relative focus:shadow-gray-600"
         :class="{ 'border-gray-200 border-2 shadow-gray-700': project.show }">
         <div class="flex-1">
@@ -16,22 +16,23 @@
           <p class="text-gray-400 font-medium text-sm">{{ project.role }}</p>
           <p class="text-gray-400 font-medium text-sm">{{ project.type }}</p>
         </div>
-        
-          <div class="group-focus:block hidden absolute top-0 group-focus:relative">
-            <div v-if="project.link" @click="redirect(project.link)" href="http://google.com"
-              class="cursor-pointer text-sm py-1 underline">{{ project.link }}</div>
-            <div class="transition-all font-medium text-lg flex-1">{{ project.info }}</div>
-            <div class=" font-medium flex gap-2 w-full flex-wrap pt-3 ">
-              <div v-for="techStack in project.techStacks"
-                class="p-1 px-2 bg-gray-800 text-white w-fit rounded-lg text-nowrap">{{ techStack }}</div>
-            </div>
+
+        <div class="group-focus:block hidden absolute top-0 group-focus:relative">
+          <div v-if="project.link" @click="redirect(project.link)" href="http://google.com"
+            class="cursor-pointer text-sm py-1 underline">{{ project.link }}</div>
+          <div class="transition-all font-medium text-lg flex-1">{{ project.info }}</div>
+          <div class=" font-medium flex gap-2 w-full flex-wrap pt-3 ">
+            <div v-for="techStack in project.techStacks"
+              class="p-1 px-2 bg-gray-800 text-white w-fit rounded-lg text-nowrap">{{ techStack }}</div>
           </div>
+        </div>
       </button>
-    </div>
+    </TransitionGroup>
   </div>
 </template>
 <script>
 import { useRoute } from 'vue-router'
+import gsap from 'gsap'
 
 export default {
   data() {
@@ -232,13 +233,13 @@ export default {
           ]
         },
       },
-      
+
     }
   },
   mounted() {
     const route = useRoute()
-    
-    if(!route.query.project) return
+
+    if (!route.query.project) return
 
     const key = route.query.project.replace(/\s/g, '').toLowerCase()
     this.$refs[key][0].focus()
@@ -257,24 +258,27 @@ export default {
     redirect(link) {
       window.open(link, '_blank')
     },
+
+    onBeforeEnter(el) {
+      el.style.opacity = 0
+      el.style.height = 0
+    },
+    onEnter(el, done) {
+      gsap.to(el, {
+        opacity: 1,
+        height: 'auto',
+        delay: el.dataset.index * 0.15,
+        onComplete: done
+      })
+    },
+    onLeave(el, done) {
+      gsap.to(el, {
+        opacity: 0,
+        height: 0,
+        delay: el.dataset.index * 0.15,
+        onComplete: done
+      })
+    }
   }
 }
 </script>
-<style scoped>
-.fade-enter-active {
-  transition: opacity 0.5s ease;
-
-}
-
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-.fade-move {
-  transition: all 0.3s ease;
-}</style>
