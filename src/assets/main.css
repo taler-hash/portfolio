@@ -24,7 +24,7 @@
 }
 
 *::-webkit-scrollbar-track:active {
-  background-color: #1F2937;
+  background-color: #FFFFFF;
 }
 
 *::-webkit-scrollbar-thumb {
@@ -33,7 +33,7 @@
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #ffffff;
+  background-color: #1F2937;
 }
 
 *::-webkit-scrollbar-thumb:active {
