@@ -4,7 +4,7 @@
       {{ path }}
     </div>
     <div class="w-full h-full pb-[8rem]">
-      <div class="w-full h-full overflow-y-auto">
+      <div class="w-full h-full overflow-y-scroll overflow-x-hidden">
         <router-view></router-view>
       </div>
     </div>
