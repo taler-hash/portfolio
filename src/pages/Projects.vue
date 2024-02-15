@@ -5,7 +5,7 @@
     <TransitionGroup class="max-h-[94%] lg:w-[800px] w-full py-4  px-4 flex flex-wrap justify-center gap-3 relative"
       :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" tag="div" appear>
       <button v-for="(project, key) in projects" :key="project" :ref="`${key.replace(/\s/g, '').toLowerCase()}`"
-        class="p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col h-fit cursor-pointer group text-start relative focus:shadow-gray-600"
+        class="p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col h-fit cursor-pointer group text-start relative focus:shadow-gray-600 overflow-hidden"
         :class="{ 'border-gray-200 border-2 shadow-gray-700': project.show }">
         <div class="flex-1">
           <div class="px-2 py-1 rounded-md bg-gray-800 w-fit text-white font-medium mb-2">
