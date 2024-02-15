@@ -71,6 +71,11 @@ export default {
           language: 'Javascript'
         },
         {
+          name: 'Vue.JS',
+          rate: 8,
+          language: 'Javascript'
+        },
+        {
           name: 'React.JS',
           rate: 7,
           language: 'Javascript'
