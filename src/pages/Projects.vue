@@ -4,29 +4,30 @@
   <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48">
     <TransitionGroup class="max-h-[94%] lg:w-[800px] w-full py-4  px-4 flex flex-wrap justify-center gap-3 relative"
       :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" tag="div" appear>
-      <button v-for="(project, key) in projects" :key="project" :ref="`${key.replace(/\s/g, '').toLowerCase()}`"
-        class="p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col h-fit cursor-pointer group text-start relative focus:shadow-gray-600 overflow-hidden"
-        :class="{ 'border-gray-200 border-2 shadow-gray-700': project.show }">
-        <div class="flex-1">
-          <div class="px-2 py-1 rounded-md bg-gray-800 w-fit text-white font-medium mb-2">
-            {{ project.link ? 'public' : 'private' }}
+      <div @click="handleShowCardInfo(key.replace(/\s/g, '').toLowerCase())" v-for="(project, key) in projects"
+        :key="project" :ref="`${key.replace(/\s/g, '').toLowerCase()}`" class="overflow-hidden">
+        <div class="cards p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col cursor-pointer group text-start relative focus:shadow-gray-600 overflow-hidden">
+          <div class="flex-1">
+            <div class="px-2 py-1 rounded-md bg-gray-800 w-fit text-white font-medium mb-2">
+              {{ project.link ? 'public' : 'private' }}
+            </div>
+            <p class="font-bold text-xl">{{ project.name }}</p>
+            <p class="font-medium text-lg">{{ project.company }}</p>
+            <p class="text-gray-400 font-medium text-sm">{{ project.role }}</p>
+            <p class="text-gray-400 font-medium text-sm">{{ project.type }}</p>
           </div>
-          <p class="font-bold text-xl">{{ project.name }}</p>
-          <p class="font-medium text-lg">{{ project.company }}</p>
-          <p class="text-gray-400 font-medium text-sm">{{ project.role }}</p>
-          <p class="text-gray-400 font-medium text-sm">{{ project.type }}</p>
-        </div>
 
-        <div class="group-focus:block hidden absolute top-0 group-focus:relative">
-          <div v-if="project.link" @click="redirect(project.link)" href="http://google.com"
-            class="cursor-pointer text-sm py-1 underline">{{ project.link }}</div>
-          <div class="transition-all font-medium text-lg flex-1">{{ project.info }}</div>
-          <div class=" font-medium flex gap-2 w-full flex-wrap pt-3 ">
-            <div v-for="techStack in project.techStacks"
-              class="p-1 px-2 bg-gray-800 text-white w-fit rounded-lg text-nowrap">{{ techStack }}</div>
+          <div class="info top-0">
+            <div v-if="project.link" @click="redirect(project.link)" href="http://google.com"
+              class="cursor-pointer text-sm py-1 underline">{{ project.link }}</div>
+            <div class="transition-all font-medium text-lg flex-1">{{ project.info }}</div>
+            <div class=" font-medium flex gap-2 w-full flex-wrap pt-3 ">
+              <div v-for="techStack in project.techStacks"
+                class="p-1 px-2 bg-gray-800 text-white w-fit rounded-lg text-nowrap">{{ techStack }}</div>
+            </div>
           </div>
         </div>
-      </button>
+      </div>
     </TransitionGroup>
   </div>
 </template>
@@ -278,6 +279,11 @@ export default {
         delay: el.dataset.index * 0.15,
         onComplete: done
       })
+    },
+
+    handleShowCardInfo(key) {
+      const info = this.$refs[key][0].querySelector('.info').clientHeight
+      console.log(info)
     }
   }
 }
