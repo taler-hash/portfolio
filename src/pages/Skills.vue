@@ -5,7 +5,7 @@
       <div class="h-[94%] w-full flex flex-wrap h-fit justify-center  transition-all">
         <TransitionGroup tag="ul" :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" appear
           class="flex flex-wrap gap-4 justify-center w-full">
-          <li v-for="skill in filterSkills" :key="skill" class="w-full md:w-[200px] ">
+          <li v-for="skill in filterSkills" :key="skill" class="w-full md:w-[200px] overflow-hidden">
             <div class="p-3 px-5 rounded-lg border shadow-md w-full h-fit">
               <div class="font-medium text-center">
                 <p class="text-lg">{{ skill.name }}</p>

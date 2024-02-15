@@ -4,7 +4,7 @@
   <div class="h-[82%] w-full flex justify-center">
     <TransitionGroup class="w-[500px] py-4 space-y-4 text-wrap px-4" :css="false" @before-enter="onBeforeEnter"
       @enter="onEnter" @leave="onLeave" tag="div" appear>
-      <div v-for="education in educations" :key="education" class="p-3 px-5 rounded-lg border shadow-md">
+      <div v-for="education in educations" :key="education" class="p-3 px-5 rounded-lg border shadow-md overflow-hidden">
         <div class="pb-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-6 h-6">

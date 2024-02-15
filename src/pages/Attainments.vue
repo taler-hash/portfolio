@@ -4,7 +4,7 @@
   <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48 transition-all">
     <TransitionGroup :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" tag="div" appear
       class="max-h-[94%] lg:w-[800px] w-full py-4  px-4 flex flex-wrap justify-center gap-3 relative">
-      <div v-for="attainment in attainments" :key="attainment" class="p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col h-fit">
+      <div v-for="attainment in attainments" :key="attainment" class="p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col h-fit overflow-hidden">
         <button @click="previewImage(attainment.eventName)"
           class="w-full h-48 bg-gray-900  rounded-md border overflow-hidden">
           <img :src="attainment.image" :alt="attainment.eventName" class="object-contain w-full h-full text-white">
