@@ -18,6 +18,7 @@
           </div>
           <div class="pb-1.5">
             <p class="font-bold text-xl">{{ exp.company }}</p>
+            <p class="font-medium underline underline-offset-[2.5px]">{{ exp.role }}</p>
             <div class="text-sm font-medium text-gray-600">
               {{ exp.years }}
             </div>
@@ -47,6 +48,7 @@ export default {
       exps: [
         {
           company: 'Cubic Solutions Inc',
+          role: 'Full stack Developer',
           handlings: [
             {
               name: 'SportsBook API',
@@ -75,6 +77,7 @@ export default {
         },
         {
           company: 'Metro Retail Store Group Inc',
+          role: 'Software Developer',
           handlings: [
             {
               name: 'RMS User Access Control',
@@ -119,6 +122,7 @@ export default {
         },
         {
           company: 'Cold Link Asia Logistic',
+          role: 'IT Technician',
           years: 'Sep 2019 - Dec 2019 | 3 months | Intern',
           handlings: [
             {
