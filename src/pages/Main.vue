@@ -19,8 +19,8 @@
               Jurie Tylier Pedrogas
             </p>
             <p class="text-4xl">
-              and im a <vue-typewriter-effect class="text-rose-600"
-                :strings="['Full stack Developer', 'Ethical Programmer']"></vue-typewriter-effect>
+              and im <vue-typewriter-effect class="text-rose-600"
+                :strings="['a Full stack Developer', 'an Ethical Programmer']"></vue-typewriter-effect>
             </p>
           </div>
           <div class="pt-2 flex space-x-2 text-gray-600">
