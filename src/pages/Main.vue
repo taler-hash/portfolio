@@ -44,7 +44,7 @@
             </button>
           </div>
           <Transition name="slide-top" appear>
-            <p v-if="show" class="pt-4 font-medium text-gray-400 italic">“{{ selectedQuotes }}.”</p>
+            <p v-if="show" class="pt-4 font-medium text-gray-400 italic">“{{ quotes[selectedQuotes] }}.”</p>
           </Transition>
         </div>
       </div>
@@ -71,7 +71,7 @@ export default {
         "It is the essence of genius to make use of the simplest ideas."
       ],
       show: true,
-      selectedQuotes: "The greatest ideas are the simplest.",
+      selectedQuotes: 4,
       img: Me,
     }
   },
@@ -79,9 +79,7 @@ export default {
   mounted() {
     setInterval(() => {
       this.show = false
-      const index = Math.floor(Math.random() * (this.quotes.length))
-      this.selectedQuotes = this.quotes[index]
-
+      this.selectedQuotes = this.getQuotes()
       setTimeout(() => {
         this.show = true
       }, 100)
@@ -91,6 +89,19 @@ export default {
   methods: {
     redirect(link) {
       window.open(link, '_blank')
+    },
+
+    getRandomIndex() {
+      return Math.floor(Math.random() * (this.quotes.length))
+    },
+
+    getQuotes() {
+      const newIndex = this.getRandomIndex()
+      do {
+        this.selectedQuotes = this.getRandomIndex()
+      } while (newIndex === this.selectedQuotes)
+
+      return newIndex
     }
   }
 }
