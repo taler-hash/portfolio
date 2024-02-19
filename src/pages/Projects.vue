@@ -6,9 +6,9 @@
       :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" tag="div" appear>
       <div @click="handleShowCardInfo(key.replace(/\s/g, '').toLowerCase())" v-for="(project, key) in projects"
         :key="project" :ref="`${key.replace(/\s/g, '').toLowerCase()}`" class="overflow-hidden">
-        <div class="cards p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col cursor-pointer group text-start relative focus:shadow-gray-600 overflow-hidden">
+        <div class="cards p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col group text-start relative focus:shadow-gray-600 overflow-hidden">
           <div class="flex-1">
-            <div class="px-2 py-1 rounded-md bg-gray-800 w-fit text-white font-medium mb-2">
+            <div class="px-2 py-1 rounded-md border text-black border-gray-800 w-fit font-medium mb-2">
               {{ project.link ? 'public' : 'private' }}
             </div>
             <p class="font-bold text-xl">{{ project.name }}</p>
