@@ -39,6 +39,67 @@ export default {
   data() {
     return {
       projects: {
+        'Tic Tac Toe Game': {
+          show: true,
+          name: 'Tic Tac Toe Game',
+          company: 'Side Project',
+          role: 'Developed',
+          link: 'https://tictactoejurietylierpedrogas-jftdvbdng.vercel.app/',
+          type: 'Side Project',
+          info: `Tic Tac Toe is traditionally played on a 3 × 3 grid. Players take turns placing a mark in one of the cells of the grid. 
+          The goal of the game is for players to position their marks so that they make a 
+          continuous line of three cells vertically, horizontally, or diagonally.`,
+          techStacks: [
+            'React JS',
+            'Tailwind CSS'
+          ]
+        },
+
+        'IT Ticketing System': {
+          show: false,
+          name: 'IT Ticketing System',
+          company: 'Tersus Services',
+          role: 'Developed and Maintain',
+          link: null,
+          type: 'Company Based',
+          info: `An IT ticketing system is a tool used to track IT service requests, events, incidents, and alerts 
+          that might require additional action from IT.`,
+          techStacks: [
+            'PHP',
+            'Laravel',
+            'Mysql DB',
+            'Tailwind CSS',
+            'CSS',
+            'Javascript',
+            'Vue',
+            'CPanel',
+            'Node JS'
+          ]
+        },
+
+        'Customer Relationship Management': {
+          show: false,
+          name: 'Customer Relationship Management',
+          company: 'Tersus Services',
+          role: 'Developed and Maintain',
+          link: null,
+          type: 'Company Based',
+          info: `Customer relationship management (CRM) is a technology for managing all of your company's interactions 
+          with current and potential customers. 
+          The goal is simple: improve relationships to grow your business. 
+          CRM technology helps companies stay connected to customers, streamline processes, and improve profitability.`,
+          techStacks: [
+            'PHP',
+            'Laravel',
+            'Mysql DB',
+            'Tailwind CSS',
+            'CSS',
+            'Javascript',
+            'Vue',
+            'CPanel',
+            'Node JS'
+          ]
+        },
         'Contract Management System': {
           show: false,
           name: 'Contract Management System',

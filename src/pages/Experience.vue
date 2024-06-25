@@ -47,6 +47,29 @@ export default {
     return {
       exps: [
         {
+          company: 'Tersus Services',
+          role: 'Full stack Developer',
+          handlings: [
+            {
+              name: 'Customer Relationship Management',
+              show: true,
+            },
+            {
+              name: 'IT Ticketing System',
+              show: true,
+            },
+          ],
+          years: 'March 2023 - Present | 3 months | Fulltime',
+          skillsets: [
+            'Vue.JS',
+            'Laravel',
+            'PHP',
+            'Node JS',
+            'Mysql',
+            'CPanel',
+          ],
+        },
+        {
           company: 'Cubic Solutions Inc',
           role: 'Full stack Developer',
           handlings: [
