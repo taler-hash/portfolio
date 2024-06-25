@@ -51,6 +51,11 @@ export default {
       filterBy: "",
       skills: [
         {
+          name: 'CPanel',
+          rate: 6.5,
+          language: 'Deployment'
+        },
+        {
           name: 'PHP',
           rate: 6.5,
           language: 'PHP'
