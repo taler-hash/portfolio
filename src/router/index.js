@@ -1,11 +1,13 @@
+import { defineAsyncComponent } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import Main from '../pages/Main.vue'
-import Skills from '../pages/Skills.vue'
-import Experience from '../pages/Experience.vue'
-import Education from '../pages/Education.vue'
-import Projects from '../pages/Projects.vue'
-import Attainments from '../pages/Attainments.vue'
-import notFound from '../pages/notFound.vue'
+
+const Main = defineAsyncComponent(() => import('../pages/Main.vue')) 
+const Skills = defineAsyncComponent(() => import('../pages/Skills.vue')) 
+const Experience = defineAsyncComponent(() => import('../pages/Experience.vue')) 
+const Education = defineAsyncComponent(() => import('../pages/Education.vue')) 
+const Projects = defineAsyncComponent(() => import('../pages/Projects.vue')) 
+const Attainments = defineAsyncComponent(() => import('../pages/Attainments.vue')) 
+const notFound = defineAsyncComponent(() => import('../pages/notFound.vue')) 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
