@@ -36,7 +36,12 @@
       </div>
       <div class="w-full h-[90%] grid place-items-center">
         <div class="w-[85%] h-[90%] overflow-hidden rounded-md">
-          <img :src="attainments[showImage.eventName].image" class="w-full h-full object-contain">
+          <img 
+            v-lazy="{
+              src: attainments[showImage.eventName].image, 
+              loading: LoadingComponent,  
+              delay: 200}" 
+            class="min-w-48 min-h-48 object-contain">
         </div>
       </div>
     </div>
@@ -45,6 +50,7 @@
 <script>
 import img from '../assets/attainments'
 import gsap from 'gsap'
+import LoadingComponent from '@/components/LoadingComponent.vue';
 
 export default {
   data() {
@@ -53,6 +59,7 @@ export default {
         eventName: null,
         show: false
       },
+      LoadingComponent: LoadingComponent,
       attainments: {
         'Academic Degree Award ( BSIT )': {
           eventName: 'Academic Degree Award ( BSIT )',

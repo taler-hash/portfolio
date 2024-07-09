@@ -1,13 +1,28 @@
 import { defineAsyncComponent } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import loadingComponent from '../components/LoadingComponent.vue'
 
-const Main = () => import('../pages/Main.vue')
-const Skills = () => import('../pages/Skills.vue')
-const Experience = () => import('../pages/Experience.vue')
-const Education = () => import('../pages/Education.vue')
-const Projects = () => import('../pages/Projects.vue')
-const Attainments = () => import('../pages/Attainments.vue')
-const notFound = () => import('../pages/notFound.vue')
+const Main = defineAsyncComponent({
+  loader:() => import('../pages/Main.vue'),
+  loadingComponent: loadingComponent})
+const Skills = defineAsyncComponent({
+  loader:() => import('../pages/Skills.vue'),
+  loadingComponent: loadingComponent})
+const Experience = defineAsyncComponent({
+  loader:() => import('../pages/Experience.vue'),
+  loadingComponent: loadingComponent})
+const Education = defineAsyncComponent({
+  loader:() => import('../pages/Education.vue'),
+  loadingComponent: loadingComponent})
+const Projects = defineAsyncComponent({
+  loader:() => import('../pages/Projects.vue'),
+  loadingComponent: loadingComponent})
+const Attainments = defineAsyncComponent({
+  loader:() => import('../pages/Attainments.vue'),
+  loadingComponent: loadingComponent})
+const notFound = defineAsyncComponent({
+  loader:() => import('../pages/notFound.vue'),
+  loadingComponent: loadingComponent})
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

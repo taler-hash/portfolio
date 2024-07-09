@@ -10,7 +10,7 @@
     </div>
     <!-- Footer -->
     <div class="w-full h-[13%] fixed bottom-0">
-      <Footer/>
+      <Footer />
     </div>
   </main>
 </template>
