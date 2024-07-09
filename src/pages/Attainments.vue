@@ -7,7 +7,9 @@
       <div v-for="attainment in attainments" :key="attainment" class="p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col h-fit overflow-hidden">
         <button @click="previewImage(attainment.eventName)"
           class="w-full h-48 bg-gray-900  rounded-md border overflow-hidden">
-          <img :src="attainment.image" :alt="attainment.eventName" class="object-contain w-full h-full text-white">
+          <img v-lazy="{
+            src:attainment.image,
+            delay: 500}" :alt="attainment.eventName" class="object-contain w-full h-full text-white">
         </button>
         <div class="pt-2 text-center">
           <p class="text-2xl font-bold">{{ attainment.attained }}</p>
@@ -37,10 +39,7 @@
       <div class="w-full h-[90%] grid place-items-center">
         <div class="w-[85%] h-[90%] overflow-hidden rounded-md">
           <img 
-            v-lazy="{
-              src: attainments[showImage.eventName].image, 
-              loading: LoadingComponent,  
-              delay: 200}" 
+            :src="attainments[showImage.eventName].image" 
             class="min-w-48 min-h-48 object-contain">
         </div>
       </div>
