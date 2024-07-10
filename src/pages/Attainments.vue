@@ -37,10 +37,10 @@
         </div>
       </div>
       <div class="w-full h-[90%] grid place-items-center">
-        <div class="w-[85%] h-[90%] overflow-hidden rounded-md">
+        <div class="w-[85%] h-[90%] overflow-hidden rounded-md grid place-items-center">
           <img 
             :src="attainments[showImage.eventName].image" 
-            class="min-w-48 min-h-48 object-contain">
+            class="w-full h-96 hover:h-full object-scale-down">
         </div>
       </div>
     </div>
