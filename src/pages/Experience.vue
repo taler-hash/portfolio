@@ -91,7 +91,7 @@ export default {
               show: true,
             },
           ],
-          years: 'March 2023 - Present | 3 months | Fulltime',
+          years: 'March 2023 - Present | 5 months | Fulltime',
           skillsets: [
             'Vue.JS',
             'Laravel',
