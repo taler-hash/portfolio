@@ -1,5 +1,8 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky -top-[1px] backdrop-blur-lg antialised z-50">Experiences</div>
+  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky -top-[1px] backdrop-blur-lg antialised z-50 flex items-center space-x-4">
+    <p>Experiences</p>
+    <span class="text-sm font-medium text-gray-500">{{ this.getTotalExp() }}</span>
+  </div>
   <div class="h-[82%] w-full flex justify-center lg:px-48">
     <div class="w-[500px] py-4 space-y-4 text-wrap px-4 ">
       <TransitionGroup tag="ul"
@@ -77,6 +80,7 @@ export default {
             'Laravel',
             'Mysql',
           ],
+          monthsOfExp: 8
         },
         {
           company: 'Tersus Services',
@@ -100,6 +104,7 @@ export default {
             'Mysql',
             'CPanel',
           ],
+          monthsOfExp: 5
         },
         {
           company: 'Cubic Solutions Inc',
@@ -129,6 +134,7 @@ export default {
             'Linux',
             'Ubuntu'
           ],
+          monthsOfExp: 3
         },
         {
           company: 'Metro Retail Store Group Inc',
@@ -172,8 +178,8 @@ export default {
             'Linux',
             'Oracle Linux',
             'Ubuntu',
-
-          ]
+          ],
+          monthsOfExp: 14
         },
         {
           company: 'Cold Link Asia Logistic',
@@ -184,7 +190,8 @@ export default {
               name: 'Computer Repair',
               show: false,
             },
-          ]
+          ],
+          monthsOfExp: 0
         }
       ]
     }
@@ -209,6 +216,12 @@ export default {
         delay: el.dataset.index * 0.15,
         onComplete: done
       })
+    },
+    getTotalExp() {
+      const totalMonths = this.exps.reduce((acc, curr) => acc + curr.monthsOfExp, 0);
+      const years = Math.floor(totalMonths / 12);
+      const months = totalMonths % 12;
+      return `${years} years and ${months} months`;
     }
   }
 }
