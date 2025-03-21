@@ -47,6 +47,38 @@ export default {
     return {
       exps: [
         {
+          company: 'CRM Online Australia Pty Ltd.',
+          role: 'Junior Software Engineer',
+          handlings: [
+            {
+              name: 'Sugar CRM ( Deep customization )',
+              show: true,
+            },
+            {
+              name: 'Pet Tracker Mobile ( Maintain )',
+              show: true,
+            },
+            {
+              name: 'Vet Portal ( Maintain )',
+              show: true,
+            },
+          ],
+          years: 'August 2024 - April 2025 | 8 months | Fulltime',
+          skillsets: [
+            'React.JS',
+            'Lumen',
+            'PHP',
+            'Angular',
+            'Ionic',
+            'Git',
+            'Docker',
+            'AWS',
+            'SugarCRM',
+            'Laravel',
+            'Mysql',
+          ],
+        },
+        {
           company: 'Tersus Services',
           role: 'Full stack Developer',
           handlings: [

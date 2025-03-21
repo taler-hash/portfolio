@@ -51,6 +51,26 @@ export default {
       filterBy: "",
       skills: [
         {
+          name: 'SugarCRM',
+          rate: 7,
+          language: 'Platform'
+        },
+        {
+          name: 'AWS',
+          rate: 6,
+          language: 'Server'
+        },
+        {
+          name: 'Angular',
+          rate: 6,
+          language: 'Javascript'
+        },
+        {
+          name: 'Git',
+          rate: 7,
+          language: 'Versioning'
+        },
+        {
           name: 'CPanel',
           rate: 6.5,
           language: 'Deployment'
