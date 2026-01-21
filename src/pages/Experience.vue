@@ -50,6 +50,32 @@ export default {
     return {
       exps: [
         {
+          company: 'Cyberland Consultancy Pte Ltd.',
+          role: 'Mid Level Software Engineer',
+          handlings: [
+            {
+              name: 'AWWA School ( Co Lead and Maintain)',
+              show: true,
+            },
+            {
+              name: 'AWWA SSCC - Special Student Care Centre (Lead and Maintain)',
+              show: true,
+            }
+          ],
+          years: `April 2025 - Present | ${this.getMonthsFrom(2025, 4)} months | Fulltime`,
+          skillsets: [
+            'React.JS',
+            'PHP',
+            'Git',
+            'Docker',
+            'AWS',
+            'SugarCRM',
+            'Laravel',
+            'Mysql',
+          ],
+          monthsOfExp: this.getMonthsFrom(2025, 4)
+        },
+        {
           company: 'CRM Online Australia Pty Ltd.',
           role: 'Junior Software Engineer',
           handlings: [
@@ -66,7 +92,7 @@ export default {
               show: true,
             },
           ],
-          years: 'August 2024 - April 2025 | 8 months | Fulltime',
+          years: `August 2024 - April 2025 | 8 months | Fulltime`,
           skillsets: [
             'React.JS',
             'Lumen',
@@ -222,6 +248,18 @@ export default {
       const years = Math.floor(totalMonths / 12);
       const months = totalMonths % 12;
       return `${years} years and ${months} months`;
+    },
+    getMonthsFrom(startYear, startMonth) {
+      const startDate = new Date(startYear, startMonth - 1); // Month is 0-indexed (0 = Jan, 3 = April)
+      const today = new Date();
+
+      // Calculate years difference * 12 + months difference
+      let months = (today.getFullYear() - startDate.getFullYear()) * 12;
+      months -= startDate.getMonth();
+      months += today.getMonth();
+
+      // Ensure result is not negative if start date is in future
+      return months <= 0 ? 0 : months;
     }
   }
 }
