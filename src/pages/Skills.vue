@@ -1,49 +1,35 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky top-0 -top-[1px] backdrop-blur-lg antialised">Skills</div>
-  <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48 transition-all pb-24">
-    <div class="max-h-[94%] lg:w-[800px] w-full py-4  px-4 ">
-      <div class="h-[94%] w-full flex flex-wrap h-fit justify-center  transition-all">
-        <TransitionGroup tag="ul" :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" appear
-          class="flex flex-wrap gap-4 justify-center w-full">
-          <li v-for="skill in filterSkills" :key="skill" class="w-full md:w-[200px] overflow-hidden">
-            <div class="p-3 px-5 rounded-lg border shadow-md w-full h-fit">
-              <div class="font-medium text-center">
-                <p class="text-lg">{{ skill.name }}</p>
-                <p class="text-gray-500 text-xs">{{ skill.language }}</p>
-                <div class="w-full pt-2">
-                  <div class="">{{ skill.rate }}/10</div>
-                  <div class="h-2 w-full rounded-lg" :class="handleColorRating(skill.rate)"></div>
-                </div>
-              </div>
-            </div>
-          </li>
-        </TransitionGroup>
+  <section class="page">
+    <header class="page-head">
+      <h1>Skills</h1>
+      <div class="flex items-center gap-2">
+        <select v-model="filterBy" class="h-9 rounded-lg border border-white/10 bg-[#0c1018] px-3 text-sm">
+          <option value="">All</option>
+          <option v-for="language of filterLanguage()" :key="language" :value="language">{{ language }}</option>
+        </select>
+        <button class="grid h-9 w-9 place-items-center rounded-lg border border-white/10" aria-label="Sort ascending" @click="sortType = 'ascending'">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" /></svg>
+        </button>
+        <button class="grid h-9 w-9 place-items-center rounded-lg border border-white/10" aria-label="Sort descending" @click="sortType = 'descending'">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+        </button>
       </div>
-      <div class="pt-12"></div>
-    </div>
-    <div class="h-[6%] w-full flex justify-center items-center space-x-2 fixed bottom-[6.5rem] bg-white">
-      <select v-model="filterBy" name="" id="" class="px-1 py-1 rounded-md border ">
-        <option value="" selected>All</option>
-        <option v-for="language of filterLanguage()" :value="language"> {{ language }}</option>
-      </select>
-      <button @click="sortType = 'ascending'">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-        </svg>
-      </button>
-      <button @click="sortType = 'descending'">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-        </svg>
-      </button>
-    </div>
-  </div>
+    </header>
+    <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <li v-for="skill in filterSkills" :key="skill.name" class="panel px-4 py-4">
+        <p class="truncate text-[15px] font-medium">{{ skill.name }}</p>
+        <p class="mt-0.5 text-xs text-slate-400">{{ skill.language }}</p>
+        <div class="mt-4 flex items-center gap-2">
+          <div class="h-1 flex-1 overflow-hidden rounded-full bg-white/10">
+            <div class="h-full rounded-full bg-sky-400" :style="{ width: `${skill.rate * 10}%` }"></div>
+          </div>
+          <span class="w-8 text-right text-xs tabular-nums text-slate-400">{{ skill.rate }}</span>
+        </div>
+      </li>
+    </ul>
+  </section>
 </template>
 <script>
-import gsap from 'gsap'
-
 export default {
   data() {
     return {
@@ -191,56 +177,8 @@ export default {
   },
 
   methods: {
-    handleColorRating(rate) {
-      return rate <= 3 ? 'bg-red-500'
-        : rate <= 5 ? 'bg-amber-500'
-          : rate <= 7 ? 'bg-lime-500'
-            : 'bg-green-500'
-    },
-
     filterLanguage() {
-      const res = [... new Set(this.skills.map(v => v.language))]
-
-      return res
-    },
-
-    handleFilter() {
-      this.skills = this.skills.map(v => {
-        if (this.selected === "" || this.selected === v.language) {
-          v.show = true
-        } else {
-          v.show = false
-        }
-
-        return v
-      })
-    },
-
-    handleSort(type) {
-      if (this.sortBy === type) return
-      this.skills = this.skills.sort((a, b) => type === 'descending' ? b.rate - a.rate : a.rate - b.rate)
-      this.sortBy = type
-    },
-
-    onBeforeEnter(el) {
-      el.style.opacity = 0
-      el.style.height = 0
-    },
-    onEnter(el, done) {
-      gsap.to(el, {
-        opacity: 1,
-        height: 'auto',
-        delay: el.dataset.index * 0.15,
-        onComplete: done
-      })
-    },
-    onLeave(el, done) {
-      gsap.to(el, {
-        opacity: 0,
-        height: 0,
-        delay: el.dataset.index * 0.15,
-        onComplete: done
-      })
+      return [...new Set(this.skills.map(v => v.language))]
     }
   }
 }

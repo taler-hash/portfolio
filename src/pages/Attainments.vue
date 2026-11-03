@@ -1,55 +1,42 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky top-0 -top-[1px] backdrop-blur-lg antialised z-50">Attainments
-  </div>
-  <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48 transition-all">
-    <TransitionGroup :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" tag="div" appear
-      class="max-h-[94%] lg:w-[800px] w-full py-4  px-4 flex flex-wrap justify-center gap-3 relative">
-      <div v-for="attainment in attainments" :key="attainment" class="p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col h-fit overflow-hidden">
-        <button @click="previewImage(attainment.eventName)"
-          class="w-full h-48 bg-gray-900  rounded-md border overflow-hidden">
-          <img v-lazy="{
-            src:attainment.image,
-            delay: 500}" :alt="attainment.eventName" class="object-contain w-full h-full text-white">
+  <section class="page">
+    <header class="page-head">
+      <h1>Awards</h1>
+    </header>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <article v-for="attainment in attainments" :key="attainment.eventName" class="panel overflow-hidden">
+        <button
+          v-if="attainment.image"
+          class="block h-48 w-full bg-black/40"
+          @click="previewImage(attainment.eventName)">
+          <img v-lazy="{ src: attainment.image, delay: 200 }" :alt="attainment.eventName" class="h-full w-full object-cover">
         </button>
-        <div class="pt-2 text-center">
-          <p class="text-2xl font-bold">{{ attainment.attained }}</p>
-          <p class="font-medium text-gray-600">{{ attainment.eventName }}</p>
-          <p class="pt-2 font-medium">{{ attainment.info }}</p>
+        <div v-else class="grid h-48 place-items-center bg-white/5 text-sm text-slate-500">No photo</div>
+        <div class="p-5">
+          <h2 class="text-lg font-semibold tracking-tight">{{ attainment.attained }}</h2>
+          <p class="mt-1 text-sm text-slate-400">{{ attainment.eventName }}</p>
+          <p v-if="attainment.info" class="mt-3 text-sm leading-6 text-slate-300">{{ attainment.info }}</p>
         </div>
+      </article>
+    </div>
+  </section>
+  <div v-if="showImage.show" class="fixed inset-0 z-30 flex flex-col bg-black/80 p-4 backdrop-blur-sm">
+    <div class="flex items-start justify-between gap-4 text-white">
+      <div>
+        <p class="text-lg font-semibold">{{ attainments[showImage.eventName].attained }}</p>
+        <p class="text-sm text-slate-300">{{ attainments[showImage.eventName].eventName }}</p>
       </div>
-    </TransitionGroup>
-  </div>
-  <!-- Show Image -->
-  <div v-if="showImage.show" class="absolute top-0 w-full h-screen overflow-hidden bg-black/[.75] z-50">
-    <div class="flex w-full h-full flex-col">
-      <div class="flex text-white font-medium items-center justify-between px-4">
-        <div class="p-2 px-4 bg-gray-900 mt-1 rounded-lg">
-          <p class="text-xl">{{ attainments[showImage.eventName].attained }}</p>
-          <p class="text-lg">{{ attainments[showImage.eventName].eventName }}</p>
-        </div>
-        <div class="">
-          <button @click="showImage.show = false">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"
-              class="w-10 h-10">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-      </div>
-      <div class="w-full h-[90%] grid place-items-center">
-        <div class="w-[85%] h-[90%] overflow-hidden rounded-md grid place-items-center">
-          <img 
-            :src="attainments[showImage.eventName].image" 
-            class="w-full h-96 hover:h-full object-scale-down">
-        </div>
-      </div>
+      <button class="grid h-10 w-10 place-items-center rounded-full border border-white/15" aria-label="Close" @click="showImage.show = false">
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+      </button>
+    </div>
+    <div class="mt-4 grid min-h-0 flex-1 place-items-center">
+      <img :src="attainments[showImage.eventName].image" :alt="showImage.eventName" class="max-h-full max-w-full rounded-xl object-contain">
     </div>
   </div>
 </template>
 <script>
 import img from '../assets/attainments'
-import gsap from 'gsap'
-import LoadingComponent from '@/components/LoadingComponent.vue';
 
 export default {
   data() {
@@ -58,7 +45,6 @@ export default {
         eventName: null,
         show: false
       },
-      LoadingComponent: LoadingComponent,
       attainments: {
         'Academic Degree Award ( BSIT )': {
           eventName: 'Academic Degree Award ( BSIT )',
@@ -124,26 +110,6 @@ export default {
     previewImage(eventName) {
       this.showImage.show = true
       this.showImage.eventName = eventName
-    },
-    onBeforeEnter(el) {
-      el.style.opacity = 0
-      el.style.height = 0
-    },
-    onEnter(el, done) {
-      gsap.to(el, {
-        opacity: 1,
-        height: 'auto',
-        delay: el.dataset.index * 0.15,
-        onComplete: done
-      })
-    },
-    onLeave(el, done) {
-      gsap.to(el, {
-        opacity: 0,
-        height: 0,
-        delay: el.dataset.index * 0.15,
-        onComplete: done
-      })
     }
   }
 }

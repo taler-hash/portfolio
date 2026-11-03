@@ -1,32 +1,21 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl sticky top-0 -top-[1px] backdrop-blur-lg antialised z-50">Education
-  </div>
-  <div class="h-[82%] w-full flex justify-center">
-    <TransitionGroup class="w-[500px] py-4 space-y-4 text-wrap px-4" :css="false" @before-enter="onBeforeEnter"
-      @enter="onEnter" @leave="onLeave" tag="div" appear>
-      <div v-for="education in educations" :key="education" class="p-3 px-5 rounded-lg border shadow-md overflow-hidden">
-        <div class="pb-4">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-          </svg>
+  <section class="page narrow">
+    <header class="page-head">
+      <h1>Education</h1>
+    </header>
+    <div class="grid gap-4">
+      <article v-for="education in educations" :key="education.name" class="panel p-5">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 class="text-lg font-semibold tracking-tight">{{ education.name }}</h2>
+          <p class="text-sm text-slate-400">{{ education.year }}</p>
         </div>
-        <div class="pb-1.5">
-          <p class="font-bold text-xl">{{ education.name }}</p>
-          <div class="text-sm font-medium text-gray-600">
-            <p>{{ education.year }}</p>
-            <p>{{ education.stage }}</p>
-          </div>
-          <div class="font-medium text-lg">{{ education.degree }}</div>
-        </div>
-      </div>
-    </TransitionGroup>
-  </div>
+        <p class="mt-2 text-sm text-slate-300">{{ education.stage }}</p>
+        <p v-if="education.degree" class="mt-1 text-sm text-slate-400">{{ education.degree }}</p>
+      </article>
+    </div>
+  </section>
 </template>
 <script>
-import gsap from 'gsap'
-
 export default {
   data() {
     return {
@@ -58,28 +47,6 @@ export default {
           degree: '',
         },
       ]
-    }
-  },
-  methods: {
-    onBeforeEnter(el) {
-      el.style.opacity = 0
-      el.style.height = 0
-    },
-    onEnter(el, done) {
-      gsap.to(el, {
-        opacity: 1,
-        height: 'auto',
-        delay: el.dataset.index * 0.15,
-        onComplete: done
-      })
-    },
-    onLeave(el, done) {
-      gsap.to(el, {
-        opacity: 0,
-        height: 0,
-        delay: el.dataset.index * 0.15,
-        onComplete: done
-      })
     }
   }
 }

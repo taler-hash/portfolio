@@ -1,39 +1,27 @@
 <template>
-  <div class="h-[6%] font-bold px-4 py-2 text-2xl fixed top-0 sticky top-0 -top-[1px] backdrop-blur-lg antialised z-50">
-    Projects</div>
-  <div class="h-[82%] w-full flex flex-col justify-center items-center lg:px-48">
-    <TransitionGroup class="max-h-[94%] lg:w-[800px] w-full py-4  px-4 flex flex-wrap justify-center gap-3 relative"
-      :css="false" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" tag="div" appear>
-      <div @click="handleShowCardInfo(key.replace(/\s/g, '').toLowerCase())" v-for="(project, key) in projects"
-        :key="project" :ref="`${key.replace(/\s/g, '').toLowerCase()}`" class="overflow-hidden">
-        <div class="cards p-3 px-5 rounded-lg border shadow-md w-[23rem] flex flex-col group text-start relative focus:shadow-gray-600 overflow-hidden">
-          <div class="flex-1">
-            <div class="px-2 py-1 rounded-md border text-black border-gray-800 w-fit font-medium mb-2">
-              {{ project.link ? 'public' : 'private' }}
-            </div>
-            <p class="font-bold text-xl">{{ project.name }}</p>
-            <p class="font-medium text-lg">{{ project.company }}</p>
-            <p class="text-gray-400 font-medium text-sm">{{ project.role }}</p>
-            <p class="text-gray-400 font-medium text-sm">{{ project.type }}</p>
-          </div>
-
-          <div class="info top-0">
-            <div v-if="project.link" @click="redirect(project.link)" href="http://google.com"
-              class="cursor-pointer text-sm py-1 underline">{{ project.link }}</div>
-            <div class="transition-all font-medium text-lg flex-1">{{ project.info }}</div>
-            <div class=" font-medium flex gap-2 w-full flex-wrap pt-3 ">
-              <div v-for="techStack in project.techStacks"
-                class="p-1 px-2 bg-gray-800 text-white w-fit rounded-lg text-nowrap">{{ techStack }}</div>
-            </div>
-          </div>
+  <section class="page">
+    <header class="page-head">
+      <h1>Projects</h1>
+    </header>
+    <div class="grid gap-4 md:grid-cols-2">
+      <article :id="project.name" v-for="project in projects" :key="project.name" class="panel flex flex-col p-5">
+        <div class="flex items-center justify-between gap-3">
+          <p class="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">{{ project.type }}</p>
+          <span class="chip">{{ project.link ? 'Public' : 'Private' }}</span>
         </div>
-      </div>
-    </TransitionGroup>
-  </div>
+        <h2 class="mt-3 text-lg font-semibold tracking-tight">{{ project.name }}</h2>
+        <p class="mt-1 text-sm text-slate-400">{{ project.company }} · {{ project.role }}</p>
+        <p class="mt-3 flex-1 text-sm leading-6 text-slate-300">{{ project.info }}</p>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span v-for="tech in project.techStacks || project.techStack || []" :key="tech" class="chip">{{ tech }}</span>
+        </div>
+        <a v-if="project.link" :href="project.link" target="_blank" rel="noreferrer" class="mt-4 text-sm text-sky-300">Open project</a>
+      </article>
+    </div>
+  </section>
 </template>
 <script>
 import { useRoute } from 'vue-router'
-import gsap from 'gsap'
 
 export default {
   data() {
@@ -300,52 +288,11 @@ export default {
   },
   mounted() {
     const route = useRoute()
-
     if (!route.query.project) return
-
-    const key = route.query.project.replace(/\s/g, '').toLowerCase()
-    this.$refs[key][0].focus()
+    this.$nextTick(() => {
+      document.getElementById(route.query.project)?.scrollIntoView({ block: 'center' })
+    })
   },
-
-  watch: {
-    projects: {
-      handler: function (n, o) {
-        console.log(o)
-      },
-      deep: true
-    },
-  },
-
-  methods: {
-    redirect(link) {
-      window.open(link, '_blank')
-    },
-
-    onBeforeEnter(el) {
-      el.style.opacity = 0
-      el.style.height = 0
-    },
-    onEnter(el, done) {
-      gsap.to(el, {
-        opacity: 1,
-        height: 'auto',
-        delay: el.dataset.index * 0.15,
-        onComplete: done
-      })
-    },
-    onLeave(el, done) {
-      gsap.to(el, {
-        opacity: 0,
-        height: 0,
-        delay: el.dataset.index * 0.15,
-        onComplete: done
-      })
-    },
-
-    handleShowCardInfo(key) {
-      const info = this.$refs[key][0].querySelector('.info').clientHeight
-      console.log(info)
-    }
-  }
+  methods: {}
 }
 </script>
